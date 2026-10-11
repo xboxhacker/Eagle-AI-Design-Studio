@@ -2355,6 +2355,15 @@ class MainWindow(QMainWindow):
                                      f"boards ({res['unpriced_lines']} lines unpriced"
                                      + (f", {res['from_memory']} from your remembered parts" if res.get('from_memory') else "")
                                      + ") - snapshot, not a quote", 12000)
+        unfilled = [r for r in res.get("rows", []) if not r.get("lcsc") and r.get("error")]
+        if unfilled:
+            lines = [f"{r['refs']}  ({r['value']}): {r['error']}" for r in unfilled[:30]]
+            more = f"\n… and {len(unfilled) - 30} more" if len(unfilled) > 30 else ""
+            QMessageBox.information(
+                self, APP, f"No JLC match for {len(unfilled)} of {len(res['rows'])} lines:\n\n" + "\n".join(lines) + more
+                + "\n\nFill only finds SMD resistors/capacitors (0402-2512) by value and other parts by an exact, "
+                  "current part number. For through-hole, obsolete or generic parts use 'Find missing with AI (web)' "
+                  "or type the LCSC number.")
 
     def export_jlc(self):
         if not self.project or self.worker is not None:

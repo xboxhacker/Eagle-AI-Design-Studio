@@ -103,7 +103,7 @@ def cap_kind(text: str) -> str:
         return "electrolytic"
     if any(k in t for k in ("C0G", "NP0", "COG", "NPO")):
         return "C0G"
-    if "FILM" in t:
+    if any(k in t for k in ("FILM", "WIMA", "MKS", "MKT", "MKP")):
         return "film"
     return "ceramic"
 
@@ -222,7 +222,7 @@ def analyze_part(design, index, ref: str) -> Rating:
         r.missing = "not connected on both ends"
 
     if pre == "C":
-        kind = cap_kind(f"{ps.deviceset} {ps.device} {text}")
+        kind = cap_kind(f"{ps.library} {ps.deviceset} {ps.device} {package or ''} {text}")
         if across:
             k = CAP_DERATE[kind]
             r.sees["V"] = across
