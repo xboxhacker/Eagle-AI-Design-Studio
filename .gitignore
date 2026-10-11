@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Logs and crash reports written next to the app
+*.log
+crash*.txt
+
+# Local editor / OS files
+.vscode/
+.idea/
+.cursor/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Project data that may be opened from inside the repo folder
+.eagleai/
