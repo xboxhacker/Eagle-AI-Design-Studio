@@ -13,6 +13,10 @@ real `.lbr` files, so a wrong pin is an error the AI has to fix, not a broken sc
 
 ---
 
+<img width="1502" height="952" alt="image" src="https://github.com/user-attachments/assets/b8eb236e-9357-40ab-9944-2cedf4b11762" />
+
+
+
 ## Features
 
 **Design**
